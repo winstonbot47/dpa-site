@@ -102,14 +102,30 @@
   }
   .brand h1{font-size:1.35rem;margin:0;line-height:1.15}
   .brand .sub{font-size:.78rem;color:#5b5b5b;text-transform:uppercase;letter-spacing:1px}
-  nav.primary{display:flex;gap:4px;flex-wrap:wrap}
+  nav.primary{display:flex;gap:4px;flex-wrap:wrap;align-items:center}
   nav.primary a{
     text-decoration:none;color:var(--dpa-blue);
-    padding:8px 12px;border-radius:3px;font-weight:600;font-size:.95rem
+    padding:10px 12px;border-radius:3px;font-weight:600;font-size:.95rem;
+    min-height:44px;display:inline-flex;align-items:center
   }
   nav.primary a:hover{background:var(--dpa-gray)}
   nav.primary a.cta{background:var(--dpa-red);color:#fff}
   nav.primary a.cta:hover{background:#8a2122}
+  .nav-toggle{
+    display:none;background:transparent;border:2px solid var(--dpa-blue);
+    color:var(--dpa-blue);font:700 .9rem inherit;
+    padding:8px 14px;border-radius:3px;cursor:pointer;
+    align-items:center;gap:8px;min-height:44px
+  }
+  .nav-toggle[aria-expanded=true]{background:var(--dpa-blue);color:#fff}
+  .nav-toggle .bars{
+    display:inline-block;width:18px;height:2px;background:currentColor;position:relative
+  }
+  .nav-toggle .bars::before,.nav-toggle .bars::after{
+    content:"";position:absolute;left:0;width:18px;height:2px;background:currentColor
+  }
+  .nav-toggle .bars::before{top:-6px}
+  .nav-toggle .bars::after{top:6px}
 
   /* Hero */
   .hero{
@@ -288,7 +304,71 @@
     .grid-3, .viol ul, footer.site .cols, form.complaint .row,
     form.complaint .checks, .receipt .meta-grid{grid-template-columns:1fr}
     .hero h2{font-size:1.8rem}
-    nav.primary{width:100%;justify-content:flex-start}
+    .hero p.lead{font-size:1.05rem}
+
+    .nav-toggle{display:inline-flex}
+    header.site .container{align-items:flex-start}
+    nav.primary{
+      display:none;width:100%;flex-direction:column;gap:0;
+      border-top:1px solid var(--dpa-gray-2);
+      margin-top:10px;padding-top:6px
+    }
+    nav.primary.open{display:flex}
+    nav.primary a{
+      width:100%;padding:14px 8px;border-radius:0;
+      border-bottom:1px solid var(--dpa-gray-2);
+      min-height:48px;font-size:1rem
+    }
+    nav.primary a.cta{
+      margin-top:8px;border-radius:3px;justify-content:center;
+      border-bottom:0;text-align:center
+    }
+
+    .identifier{padding:14px 0;font-size:.8rem}
+    .identifier .agency b{font-size:.95rem}
+    .seal{width:46px;height:46px;font-size:1rem}
+
+    .brand h1{font-size:1.15rem}
+    .brand .seal-lg{width:60px;height:60px}
+    .brand .sub{font-size:.7rem}
+
+    .btn{padding:14px 20px;width:100%;text-align:center}
+    .hero .actions{flex-direction:column;width:100%}
+    .hero .actions .btn{width:100%}
+
+    form.complaint .checks label,
+    form.complaint .legal-attest{
+      min-height:44px;padding:10px 8px;align-items:center;display:flex;gap:10px
+    }
+    form.complaint .severity label{padding:14px 12px;min-height:48px;display:flex;align-items:center;justify-content:center}
+    form.complaint input[type=text],
+    form.complaint input[type=email],
+    form.complaint input[type=tel],
+    form.complaint input[type=date],
+    form.complaint select,
+    form.complaint textarea{padding:12px;font-size:1rem}
+    form.complaint .actions{flex-direction:column}
+    form.complaint .actions .btn{width:100%}
+
+    .modal-backdrop{padding:16px 8px}
+    .modal-header h2{font-size:1.1rem}
+    .form-meta{padding:8px 16px;font-size:.72rem}
+    form.complaint{padding:16px}
+
+    .receipt{padding:18px 16px}
+    .receipt .ticket-no{font-size:1.1rem;word-break:break-all}
+    .receipt .actions{flex-direction:column}
+    .receipt .actions .btn{width:100%}
+
+    .gov-banner-detail .cols{grid-template-columns:1fr;gap:14px}
+  }
+  @media (max-width:480px){
+    .hero h2{font-size:1.55rem}
+    section.s{padding:40px 0}
+    section.s h2{font-size:1.4rem}
+    .hero{padding:36px 0 40px}
+    .cta-strip{padding:36px 0}
+    .cta-strip h2{font-size:1.4rem}
   }
   @media print{
     .gov-banner,header.site,nav.primary,.hero,section.s,.cta-strip,footer.site,.modal-header .close,.receipt .actions{display:none!important}
@@ -341,7 +421,11 @@
         <div class="sub">Established by Executive Order 14-HUG &middot; Public Law 118-XOXO</div>
       </div>
     </div>
-    <nav class="primary" aria-label="Primary">
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation menu">
+      <span class="bars" aria-hidden="true"></span>
+      <span>Menu</span>
+    </button>
+    <nav class="primary" id="primary-nav" aria-label="Primary">
       <a href="#mission">Our Mission</a>
       <a href="#rights">Your Rights</a>
       <a href="#violations">Violations</a>
@@ -780,6 +864,21 @@
     const open = bannerDetail.classList.toggle('open');
     bannerBtn.setAttribute('aria-expanded', open);
   });
+
+  // Mobile nav toggle
+  const navToggle = $('#nav-toggle');
+  const primaryNav = $('#primary-nav');
+  function closeNav(){
+    primaryNav.classList.remove('open');
+    navToggle.setAttribute('aria-expanded','false');
+  }
+  navToggle.addEventListener('click', () => {
+    const open = primaryNav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  primaryNav.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', closeNav)
+  );
 
   // Modal helpers
   const modal = $('#modal');
