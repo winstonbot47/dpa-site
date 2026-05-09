@@ -12,7 +12,7 @@
  */
 
 // ID of the "DPA Intake" Google Sheet — pulled from its URL
-const SPREADSHEET_ID  = '1RHa0WgFnJ9H9IScB60E3BhrXbL9-XtyjhcExws8Ex-o';
+const SPREADSHEET_ID  = '1RHa0WgFnJ9H9lScB60E3BhrXbL9-XtyjhcExws8Ex-o';
 const COMPLAINTS_TAB  = 'Complaints';
 const ESCALATIONS_TAB = 'Escalations';
 
