@@ -11,6 +11,8 @@
  * Deploy → copy the Web app URL.
  */
 
+// ID of the "DPA Intake" Google Sheet — pulled from its URL
+const SPREADSHEET_ID  = '1RHa0WgFnJ9H9IScB60E3BhrXbL9-XtyjhcExws8Ex-o';
 const COMPLAINTS_TAB  = 'Complaints';
 const ESCALATIONS_TAB = 'Escalations';
 
@@ -28,7 +30,7 @@ const ESCALATION_HEADERS = [
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents || '{}');
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
     const isEsc = data.kind === 'escalation';
     const tabName = isEsc ? ESCALATIONS_TAB : COMPLAINTS_TAB;
     const sheet = getOrCreateSheet(ss, tabName, isEsc ? ESCALATION_HEADERS : COMPLAINT_HEADERS);
