@@ -1,0 +1,967 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>U.S. Department of Physical Affection | DPA.gov</title>
+<meta name="description" content="The official website of the United States Department of Physical Affection (DPA). File a complaint, learn your rights, and access affection assistance programs." />
+<style>
+  :root{
+    --dpa-blue:#112e51;
+    --dpa-blue-dark:#0b1f38;
+    --dpa-red:#b32d2e;
+    --dpa-gold:#fdb81e;
+    --dpa-gray:#f1f1f1;
+    --dpa-gray-2:#e4e2e0;
+    --dpa-text:#1b1b1b;
+    --dpa-link:#0071bc;
+    --dpa-link-visited:#4c2c92;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color:var(--dpa-text);
+    background:#fff;
+    line-height:1.5;
+  }
+  a{color:var(--dpa-link);text-decoration:underline}
+  a:visited{color:var(--dpa-link-visited)}
+  h1,h2,h3,h4{font-family: "Merriweather", Georgia, "Times New Roman", serif; color:var(--dpa-blue); margin:0 0 .5em}
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+  /* Top gov banner */
+  .gov-banner{
+    background:#f0f0f0;
+    border-bottom:1px solid #dfe1e2;
+    font-size:.78rem;
+    color:#1b1b1b;
+  }
+  .gov-banner .container{display:flex;align-items:center;gap:10px;padding:6px 20px}
+  .gov-banner .flag{
+    width:16px;height:11px;
+    background:linear-gradient(#bf0a30 0 18%,#fff 18% 36%,#bf0a30 36% 54%,#fff 54% 72%,#bf0a30 72% 90%,#fff 90% 100%);
+    position:relative;flex-shrink:0;border:1px solid #888
+  }
+  .gov-banner .flag::before{
+    content:"";position:absolute;top:0;left:0;width:7px;height:6px;background:#002868;
+  }
+  .gov-banner button{
+    background:none;border:0;color:var(--dpa-link);cursor:pointer;text-decoration:underline;font:inherit;padding:0
+  }
+  .gov-banner-detail{display:none;padding:14px 20px 18px;border-top:1px solid #dfe1e2;background:#f0f0f0}
+  .gov-banner-detail.open{display:block}
+  .gov-banner-detail .cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:1100px;margin:0 auto}
+  .gov-banner-detail h4{color:#1b1b1b;font-family:inherit;font-size:.85rem;margin:0 0 4px}
+  .gov-banner-detail p{margin:0;font-size:.78rem}
+
+  /* Identifier */
+  .identifier{
+    background:var(--dpa-blue-dark);
+    color:#fff;
+    padding:18px 0;
+    font-size:.85rem;
+  }
+  .identifier .container{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .identifier a{color:#fff}
+  .seal{
+    width:54px;height:54px;border-radius:50%;
+    background:radial-gradient(circle at 50% 45%, #fdb81e 0 18%, #b32d2e 19% 38%, #fff 39% 58%, var(--dpa-blue) 59% 100%);
+    border:2px solid #fff;
+    display:flex;align-items:center;justify-content:center;
+    font-family:Merriweather,Georgia,serif;
+    font-weight:700;color:#fff;font-size:1.2rem;
+    text-shadow:0 1px 2px #000;
+    flex-shrink:0;
+  }
+  .identifier .agency b{display:block;font-size:1rem;font-family:Merriweather,Georgia,serif}
+
+  /* Header */
+  header.site{
+    border-bottom:6px solid var(--dpa-red);
+    background:#fff;
+  }
+  header.site .container{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px;flex-wrap:wrap
+  }
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand .seal-lg{
+    width:72px;height:72px;border-radius:50%;
+    background:
+      radial-gradient(circle at 50% 50%, #fff 0 14%, transparent 14%),
+      radial-gradient(circle at 50% 45%, var(--dpa-gold) 0 22%, var(--dpa-red) 23% 44%, #fff 45% 60%, var(--dpa-blue) 61% 100%);
+    border:3px solid var(--dpa-blue);
+    box-shadow:0 0 0 2px var(--dpa-gold);
+    flex-shrink:0;position:relative;
+  }
+  .brand .seal-lg::after{
+    content:"DPA";
+    position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:Merriweather,serif;font-weight:900;color:#fff;font-size:.95rem;letter-spacing:1px;
+    text-shadow:0 1px 2px #000;
+  }
+  .brand h1{font-size:1.35rem;margin:0;line-height:1.15}
+  .brand .sub{font-size:.78rem;color:#5b5b5b;text-transform:uppercase;letter-spacing:1px}
+  nav.primary{display:flex;gap:4px;flex-wrap:wrap}
+  nav.primary a{
+    text-decoration:none;color:var(--dpa-blue);
+    padding:8px 12px;border-radius:3px;font-weight:600;font-size:.95rem
+  }
+  nav.primary a:hover{background:var(--dpa-gray)}
+  nav.primary a.cta{background:var(--dpa-red);color:#fff}
+  nav.primary a.cta:hover{background:#8a2122}
+
+  /* Hero */
+  .hero{
+    background:
+      linear-gradient(rgba(17,46,81,.86),rgba(17,46,81,.86)),
+      repeating-linear-gradient(45deg,#0b1f38 0 14px,#112e51 14px 28px);
+    color:#fff;
+    padding:64px 0 72px;
+  }
+  .hero .container{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+  .hero h2{color:#fff;font-size:2.4rem;line-height:1.15;margin-bottom:.4em}
+  .hero p.lead{font-size:1.15rem;max-width:60ch;margin:0 0 22px}
+  .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;border:0;cursor:pointer;
+    font:600 1rem/1.1 "Source Sans Pro",sans-serif;
+    padding:14px 22px;border-radius:4px;
+    text-decoration:none;
+  }
+  .btn-primary{background:var(--dpa-red);color:#fff}
+  .btn-primary:hover{background:#8a2122}
+  .btn-secondary{background:#fff;color:var(--dpa-blue)}
+  .btn-secondary:hover{background:var(--dpa-gray-2)}
+  .btn-ghost{background:transparent;color:#fff;border:2px solid #fff}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+  .alert-card{
+    background:#fff;color:var(--dpa-text);
+    border-left:6px solid var(--dpa-gold);
+    padding:18px 20px;border-radius:3px;
+    box-shadow:0 6px 18px rgba(0,0,0,.25)
+  }
+  .alert-card h3{margin-top:0;color:var(--dpa-blue);font-size:1.1rem}
+  .alert-card .stat{
+    display:flex;align-items:baseline;gap:10px;margin:10px 0;
+  }
+  .alert-card .stat b{font-size:1.6rem;color:var(--dpa-red);font-family:Merriweather,serif}
+  .alert-card small{color:#5b5b5b}
+
+  /* Section base */
+  section.s{padding:56px 0;border-bottom:1px solid var(--dpa-gray-2)}
+  section.s h2{font-size:1.8rem;margin-bottom:.3em}
+  section.s p.kicker{
+    text-transform:uppercase;letter-spacing:2px;color:var(--dpa-red);
+    font-weight:700;font-size:.78rem;margin:0 0 8px;font-family:inherit
+  }
+
+  /* Mission grid */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:28px}
+  .card{
+    background:#fff;border:1px solid var(--dpa-gray-2);border-top:4px solid var(--dpa-blue);
+    padding:22px;border-radius:3px;
+  }
+  .card h3{font-size:1.1rem;margin-bottom:8px}
+  .card .icon{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--dpa-blue);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:700;margin-bottom:10px;font-family:Merriweather,serif
+  }
+
+  /* Violations list */
+  .viol{background:var(--dpa-gray)}
+  .viol ul{
+    list-style:none;padding:0;margin:24px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:8px 28px
+  }
+  .viol li{
+    padding:10px 0 10px 28px;position:relative;border-bottom:1px dotted #c9c9c9
+  }
+  .viol li::before{
+    content:"§";position:absolute;left:0;top:8px;color:var(--dpa-red);font-weight:700;font-family:Merriweather,serif
+  }
+
+  /* CTA strip */
+  .cta-strip{
+    background:var(--dpa-blue);color:#fff;padding:48px 0;text-align:center
+  }
+  .cta-strip h2{color:#fff}
+  .cta-strip p{max-width:60ch;margin:0 auto 22px}
+
+  /* Footer */
+  footer.site{background:var(--dpa-blue-dark);color:#cfd6df;padding:36px 0 50px;font-size:.9rem}
+  footer.site h4{color:#fff;font-family:inherit;font-size:.95rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+  footer.site a{color:#9bd3ff}
+  footer.site .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  footer.site ul{list-style:none;padding:0;margin:0}
+  footer.site li{margin:4px 0}
+  .legal{
+    border-top:1px solid #2a4063;margin-top:28px;padding-top:18px;font-size:.78rem;color:#9aa6b5
+  }
+
+  /* Modal */
+  .modal-backdrop{
+    position:fixed;inset:0;background:rgba(11,31,56,.78);
+    display:none;align-items:flex-start;justify-content:center;
+    overflow-y:auto;padding:40px 16px;z-index:50
+  }
+  .modal-backdrop.open{display:flex}
+  .modal{
+    background:#fff;max-width:720px;width:100%;border-radius:4px;
+    border-top:6px solid var(--dpa-red);box-shadow:0 20px 60px rgba(0,0,0,.5);
+    overflow:hidden
+  }
+  .modal-header{
+    padding:20px 24px 14px;border-bottom:1px solid var(--dpa-gray-2);
+    display:flex;align-items:center;justify-content:space-between;gap:12px
+  }
+  .modal-header h2{margin:0;font-size:1.3rem}
+  .modal-header .close{
+    background:none;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:#5b5b5b
+  }
+  .form-meta{
+    background:var(--dpa-gray);padding:10px 24px;font-size:.78rem;color:#5b5b5b;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px
+  }
+  form.complaint{padding:20px 24px 24px}
+  form.complaint .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  form.complaint label{display:block;margin:10px 0 4px;font-weight:600;font-size:.9rem}
+  form.complaint .req{color:var(--dpa-red)}
+  form.complaint input[type=text],
+  form.complaint input[type=email],
+  form.complaint input[type=tel],
+  form.complaint input[type=date],
+  form.complaint select,
+  form.complaint textarea{
+    width:100%;padding:9px 10px;border:1px solid #5b616b;border-radius:2px;
+    font:inherit;background:#fff
+  }
+  form.complaint textarea{min-height:120px;resize:vertical}
+  form.complaint .checks{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;margin-top:6px}
+  form.complaint .checks label{font-weight:400;margin:2px 0;font-size:.92rem}
+  form.complaint .severity{display:flex;gap:6px;margin-top:4px;flex-wrap:wrap}
+  form.complaint .severity label{
+    flex:1 1 110px;border:1px solid #5b616b;border-radius:2px;padding:8px 10px;
+    cursor:pointer;text-align:center;font-weight:600;font-size:.9rem;background:#fff
+  }
+  form.complaint .severity input{position:absolute;opacity:0;pointer-events:none}
+  form.complaint .severity input:checked + span{display:block}
+  form.complaint .severity label:has(input:checked){background:var(--dpa-blue);color:#fff;border-color:var(--dpa-blue)}
+  form.complaint .legal-attest{
+    background:var(--dpa-gray);padding:12px 14px;border-radius:2px;
+    font-size:.82rem;margin:14px 0 6px;display:flex;gap:8px;align-items:flex-start
+  }
+  form.complaint .actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap}
+  form.complaint .btn-submit{background:var(--dpa-red);color:#fff}
+  form.complaint .btn-submit:disabled{opacity:.5;cursor:not-allowed}
+  .btn-escalate{background:var(--dpa-gold);color:var(--dpa-blue-dark);font-weight:700}
+  .btn-escalate:hover{background:#e0a200}
+
+  /* Receipt */
+  .receipt{padding:24px 24px 28px}
+  .receipt .stamp{
+    border:3px double var(--dpa-red);color:var(--dpa-red);
+    padding:8px 14px;display:inline-block;font-family:Merriweather,serif;
+    font-weight:700;letter-spacing:2px;transform:rotate(-3deg);
+    margin-bottom:14px
+  }
+  .receipt h2{color:var(--dpa-blue)}
+  .receipt .ticket-no{
+    font-family:"Courier New",monospace;font-weight:700;font-size:1.35rem;
+    background:var(--dpa-gray);padding:10px 14px;border-left:4px solid var(--dpa-blue);
+    margin:10px 0 16px;letter-spacing:1px
+  }
+  .receipt .meta-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;
+    background:#fafafa;border:1px solid var(--dpa-gray-2);
+    padding:14px;font-size:.92rem;border-radius:2px
+  }
+  .receipt .meta-grid b{color:var(--dpa-blue)}
+  .receipt .next-steps{margin:18px 0 4px}
+  .receipt .next-steps li{margin:4px 0}
+  .receipt .actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+
+  @media (max-width:820px){
+    .hero{padding:42px 0 48px}
+    .hero .container,
+    .grid-3, .viol ul, footer.site .cols, form.complaint .row,
+    form.complaint .checks, .receipt .meta-grid{grid-template-columns:1fr}
+    .hero h2{font-size:1.8rem}
+    nav.primary{width:100%;justify-content:flex-start}
+  }
+  @media print{
+    .gov-banner,header.site,nav.primary,.hero,section.s,.cta-strip,footer.site,.modal-header .close,.receipt .actions{display:none!important}
+    .modal-backdrop{position:static;background:#fff;padding:0}
+    .modal{box-shadow:none;border-top:0}
+  }
+</style>
+</head>
+<body>
+
+<!-- Gov banner -->
+<div class="gov-banner" role="region" aria-label="Official government website">
+  <div class="container">
+    <span class="flag" aria-hidden="true"></span>
+    <span>An official website of the United States government</span>
+    <button id="banner-toggle" aria-expanded="false" aria-controls="banner-detail">Here's how you know</button>
+  </div>
+  <div class="gov-banner-detail" id="banner-detail">
+    <div class="cols">
+      <div>
+        <h4>Official websites use .gov</h4>
+        <p>A <strong>.gov</strong> website belongs to an official government organization in the United States.</p>
+      </div>
+      <div>
+        <h4>Secure .gov websites use HTTPS</h4>
+        <p>A <strong>lock</strong> or <strong>https://</strong> means you've safely connected to the .gov website. Share sensitive information only on official, secure websites.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Identifier -->
+<div class="identifier">
+  <div class="container">
+    <div class="seal" aria-hidden="true"></div>
+    <div class="agency">
+      <b>U.S. Department of Physical Affection</b>
+      <span>Office of the Secretary &middot; Bureau of Hugs, Embraces &amp; Reassuring Touch</span>
+    </div>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="site">
+  <div class="container">
+    <div class="brand">
+      <div class="seal-lg" aria-hidden="true"></div>
+      <div>
+        <h1>Department of Physical Affection</h1>
+        <div class="sub">Established by Executive Order 14-HUG &middot; Public Law 118-XOXO</div>
+      </div>
+    </div>
+    <nav class="primary" aria-label="Primary">
+      <a href="#mission">Our Mission</a>
+      <a href="#rights">Your Rights</a>
+      <a href="#violations">Violations</a>
+      <a href="#contact">Contact</a>
+      <a href="#" id="nav-escalate">Escalate a Case</a>
+      <a class="cta" href="#file" id="nav-file">File a Complaint</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="file">
+  <div class="container">
+    <div>
+      <h2>Every American is entitled to adequate physical affection.</h2>
+      <p class="lead">
+        The DPA enforces federal standards for hugs, hand-holding, shoulder pats, head-pets, and other forms of warm
+        physical contact. If a friend, partner, family member, or coworker has failed to meet their statutory affection
+        obligations, you have the right to file a formal complaint.
+      </p>
+      <div class="actions">
+        <button class="btn btn-primary" id="open-complaint">File an Affection Complaint</button>
+        <a class="btn btn-ghost" href="#rights">Know Your Rights</a>
+      </div>
+    </div>
+    <aside class="alert-card" aria-label="Public affection advisory">
+      <h3>Public Affection Advisory &mdash; Level Orange</h3>
+      <p>National hug deficit remains <strong>elevated</strong>. Citizens are encouraged to report shortfalls promptly.</p>
+      <div class="stat"><b id="stat-tickets">2,481,907</b><small>complaints processed YTD</small></div>
+      <div class="stat"><b id="stat-resolved">94.2%</b><small>resolved within 14 days</small></div>
+      <div class="stat"><b>&lt; 24 hrs</b><small>average response time</small></div>
+    </aside>
+  </div>
+</section>
+
+<!-- Mission -->
+<section class="s" id="mission">
+  <div class="container">
+    <p class="kicker">Our Mission</p>
+    <h2>Protecting the right to be held, hugged, and gently patted on the back.</h2>
+    <p style="max-width:75ch">
+      The Department of Physical Affection is the principal federal agency responsible for the regulation, enforcement,
+      and equitable distribution of physical affection across the United States. We work with citizens, family units,
+      and workplace HR departments to ensure no American goes more than seventy-two (72) consecutive hours without
+      meaningful physical contact, in accordance with 42 U.S.C. § 1983(b)(hug).
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">I</div>
+        <h3>Investigate</h3>
+        <p>Our field officers review every complaint and conduct on-site warmth assessments where appropriate.</p>
+      </div>
+      <div class="card">
+        <div class="icon">II</div>
+        <h3>Mediate</h3>
+        <p>Trained Affection Mediators help resolve disputes between parties through structured embraces and forehead-kiss arbitration.</p>
+      </div>
+      <div class="card">
+        <div class="icon">III</div>
+        <h3>Enforce</h3>
+        <p>When informal resolution fails, the DPA may issue a Cuddle Compliance Order under section 7(b) of the Affection Standards Act.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rights -->
+<section class="s" id="rights" style="background:#fafafa">
+  <div class="container">
+    <p class="kicker">Your Rights</p>
+    <h2>Under federal law, you are entitled to:</h2>
+    <div class="grid-3">
+      <div class="card">
+        <h3>One (1) Hug Per Day, Minimum</h3>
+        <p>Of no less than four (4) seconds in duration, with both arms engaged. Side-hugs do not satisfy this requirement except in workplace settings.</p>
+      </div>
+      <div class="card">
+        <h3>Reasonable Hand-Holding</h3>
+        <p>While walking, watching films, or experiencing emotional distress. Sweaty palms are not grounds for refusal.</p>
+      </div>
+      <div class="card">
+        <h3>Head-Pat Access</h3>
+        <p>On request, and without commentary on hair condition. Aggressive ruffling is not a substitute for a gentle pat.</p>
+      </div>
+      <div class="card">
+        <h3>Shoulder Squeeze on Demand</h3>
+        <p>During moments of stress, achievement, or low-grade existential dread. Must be firm but not therapeutic in nature.</p>
+      </div>
+      <div class="card">
+        <h3>Forehead Kiss (Conditional)</h3>
+        <p>Available to citizens in established relationships of 90+ days. See Form DPA-302 for exemptions.</p>
+      </div>
+      <div class="card">
+        <h3>Right to Cuddle</h3>
+        <p>During movies, thunderstorms, and hospital visits. Cannot be unilaterally revoked without 48 hours' written notice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Violations -->
+<section class="s viol" id="violations">
+  <div class="container">
+    <p class="kicker">Reportable Violations</p>
+    <h2>Common forms of affection neglect.</h2>
+    <p>If any of the following describe your situation, you may have grounds to file a complaint:</p>
+    <ul>
+      <li>Failure to hug upon arrival or departure</li>
+      <li>"I'm not really a hugger" defense (invalid under § 4.2)</li>
+      <li>Pats on the back substituted for genuine embrace</li>
+      <li>Refusal to hold hands in public</li>
+      <li>Premature termination of cuddle (under 6 minutes)</li>
+      <li>Side-hug fraud during sentimental occasions</li>
+      <li>Cold shoulder issued without 24-hour notice</li>
+      <li>Failure to cuddle during thunderstorms</li>
+      <li>Limp, non-committal hug (the "wet noodle")</li>
+      <li>Refusal to share blanket on couch</li>
+      <li>Patting the head of a pet but not the citizen</li>
+      <li>Withholding affection as leverage</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CTA strip -->
+<section class="cta-strip">
+  <div class="container">
+    <h2>Are you experiencing an affection shortfall?</h2>
+    <p>Filing a complaint is free, confidential, and takes less than three (3) minutes. A DPA Field Officer will review your case within one business day.</p>
+    <button class="btn btn-primary" id="open-complaint-2" style="font-size:1.05rem;padding:16px 28px">File an Affection Complaint Now &rarr;</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site" id="contact">
+  <div class="container">
+    <div class="cols">
+      <div>
+        <h4>Department of Physical Affection</h4>
+        <p style="margin:0">1600 Embrace Avenue NW<br/>Washington, DC 20500<br/><br/><strong>Affection Hotline:</strong><br/>1-800-HUG-NEED (1-800-484-6333)</p>
+      </div>
+      <div>
+        <h4>Programs &amp; Services</h4>
+        <ul>
+          <li><a href="#">Federal Hug Reserve</a></li>
+          <li><a href="#">Cuddle Assistance Program (CAP)</a></li>
+          <li><a href="#">Workplace Warmth Initiative</a></li>
+          <li><a href="#">Senior Embrace Outreach</a></li>
+          <li><a href="#">Pet-Adjacent Affection Subsidies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Forms &amp; Publications</a></li>
+          <li><a href="#">FOIA Reading Room</a></li>
+          <li><a href="#">Statistics &amp; Data</a></li>
+          <li><a href="#">Office of the Inspector Hugger</a></li>
+          <li><a href="#">Press Releases</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About DPA</h4>
+        <ul>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Budget &amp; Performance</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="legal">
+      An official website of the United States government. Paperwork Reduction Act notice: Public reporting burden for this complaint
+      is estimated to average 3 minutes per response. The DPA does not discriminate on the basis of race, color, national origin,
+      affection style, or huggability.
+      <br/><br/>
+      &copy; 2026 U.S. Department of Physical Affection &middot; <a href="#">USA.gov</a> &middot; <a href="#">Plain Writing Act</a> &middot; <a href="#">No FEAR Act</a>
+    </p>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal" id="modal-content">
+    <!-- contents replaced by JS based on state -->
+  </div>
+</div>
+
+<template id="tpl-form">
+  <div class="modal-header">
+    <h2 id="modal-title">Form DPA-1040: Affection Shortfall Complaint</h2>
+    <button class="close" aria-label="Close" data-close>&times;</button>
+  </div>
+  <div class="form-meta">
+    <span>OMB Control No. 1840-HUGS</span>
+    <span>Expires: 12/31/2027</span>
+    <span>Estimated time: 3 min</span>
+  </div>
+  <form class="complaint" id="complaint-form" novalidate>
+    <p style="margin-top:0;font-size:.92rem;color:#5b5b5b">
+      Please provide the information below. All complaints are reviewed by a licensed Affection Officer. False or
+      vexatious complaints may result in a written warning under 18 U.S.C. § 1001(snug).
+    </p>
+
+    <div class="row">
+      <div>
+        <label>Your full name <span class="req">*</span></label>
+        <input type="text" name="name" required autocomplete="name" />
+      </div>
+      <div>
+        <label>Email address <span class="req">*</span></label>
+        <input type="email" name="email" required autocomplete="email" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Phone (optional)</label>
+        <input type="tel" name="phone" autocomplete="tel" />
+      </div>
+      <div>
+        <label>Date of incident <span class="req">*</span></label>
+        <input type="date" name="date" required />
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Name of offending party <span class="req">*</span></label>
+        <input type="text" name="offender" required placeholder="e.g., Jamie Q. Public" />
+      </div>
+      <div>
+        <label>Relationship <span class="req">*</span></label>
+        <select name="relationship" required>
+          <option value="">— Select one —</option>
+          <option>Romantic partner / spouse</option>
+          <option>Parent / guardian</option>
+          <option>Sibling</option>
+          <option>Friend (close)</option>
+          <option>Friend (peripheral)</option>
+          <option>Coworker</option>
+          <option>Roommate</option>
+          <option>Pet (uncooperative)</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Type of affection withheld (select all that apply) <span class="req">*</span></label>
+    <div class="checks">
+      <label><input type="checkbox" name="type" value="Hug"> Hug</label>
+      <label><input type="checkbox" name="type" value="Hand-holding"> Hand-holding</label>
+      <label><input type="checkbox" name="type" value="Cuddle"> Cuddle</label>
+      <label><input type="checkbox" name="type" value="Head pat"> Head pat</label>
+      <label><input type="checkbox" name="type" value="Shoulder squeeze"> Shoulder squeeze</label>
+      <label><input type="checkbox" name="type" value="Forehead kiss"> Forehead kiss</label>
+      <label><input type="checkbox" name="type" value="Back rub"> Back rub</label>
+      <label><input type="checkbox" name="type" value="High-five (sincere)"> High-five (sincere)</label>
+    </div>
+
+    <label>Severity <span class="req">*</span></label>
+    <div class="severity">
+      <label><input type="radio" name="severity" value="Minor" required><span>Minor</span></label>
+      <label><input type="radio" name="severity" value="Moderate"><span>Moderate</span></label>
+      <label><input type="radio" name="severity" value="Severe"><span>Severe</span></label>
+      <label><input type="radio" name="severity" value="Egregious"><span>Egregious</span></label>
+    </div>
+
+    <label>Describe the incident <span class="req">*</span></label>
+    <textarea name="description" required maxlength="2000" placeholder="Provide a clear, factual account of what occurred. Include time of day, ambient lighting, and emotional state."></textarea>
+
+    <label>Requested remedy</label>
+    <select name="remedy">
+      <option value="">— Select one —</option>
+      <option>Verbal warning to offender</option>
+      <option>Written apology</option>
+      <option>One (1) make-up hug, minimum 8 seconds</option>
+      <option>Mandatory cuddle session, supervised</option>
+      <option>Court-ordered movie night</option>
+      <option>Affection sensitivity training</option>
+      <option>Monetary damages (specify in description)</option>
+    </select>
+
+    <label class="legal-attest">
+      <input type="checkbox" name="attest" required />
+      <span>I declare under penalty of perjury that the foregoing is true and correct to the best of my knowledge,
+      and I have given the offending party a reasonable opportunity to provide affection prior to filing this complaint.</span>
+    </label>
+
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+      <button type="submit" class="btn btn-submit">Submit Complaint</button>
+    </div>
+  </form>
+</template>
+
+<template id="tpl-receipt">
+  <div class="modal-header">
+    <h2 id="modal-title">Complaint Filed Successfully</h2>
+    <button class="close" aria-label="Close" data-close>&times;</button>
+  </div>
+  <div class="receipt">
+    <div class="stamp">FILED &middot; OFFICIAL RECORD</div>
+    <h2>Your complaint has been received.</h2>
+    <p>Thank you for helping the DPA enforce federal affection standards. Please retain this receipt for your records.</p>
+    <div class="ticket-no" id="ticket-no">DPA-XXXXXXXX</div>
+    <div class="meta-grid" id="receipt-meta"></div>
+    <p class="next-steps"><strong>What happens next:</strong></p>
+    <ol class="next-steps">
+      <li>A DPA Field Officer will be assigned to your case within <strong>1 business day</strong>.</li>
+      <li>The offending party will receive a Notice of Affection Inquiry (Form DPA-22-N).</li>
+      <li>You will be contacted at the email provided to schedule a remediation session.</li>
+      <li>If the matter is unresolved within 14 days, your case will be escalated to the Bureau of Hugs.</li>
+    </ol>
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" onclick="window.print()">Print Receipt</button>
+      <button type="button" class="btn btn-escalate" id="receipt-escalate">Request Escalation &uarr;</button>
+      <button type="button" class="btn btn-primary" data-close>Close</button>
+    </div>
+  </div>
+</template>
+
+<template id="tpl-escalate">
+  <div class="modal-header">
+    <h2 id="modal-title">Form DPA-1040-E: Case Escalation Request</h2>
+    <button class="close" aria-label="Close" data-close>&times;</button>
+  </div>
+  <div class="form-meta">
+    <span>OMB Control No. 1840-HUGS-E</span>
+    <span>Routes to: Office of the Inspector Hugger</span>
+    <span>Priority queue</span>
+  </div>
+  <form class="complaint" id="escalate-form" novalidate>
+    <p style="margin-top:0;font-size:.92rem;color:#5b5b5b">
+      Use this form when an existing complaint has not received an adequate response, the offending party
+      remains non-compliant, or the affection shortfall has materially worsened. Escalated cases are reviewed
+      by a Senior Affection Officer within <strong>4 business hours</strong>.
+    </p>
+
+    <div class="row">
+      <div>
+        <label>Original ticket number <span class="req">*</span></label>
+        <input type="text" name="ticket" required placeholder="DPA-2026-XXXXXXX-XX" />
+      </div>
+      <div>
+        <label>Your email <span class="req">*</span></label>
+        <input type="email" name="email" required autocomplete="email" />
+      </div>
+    </div>
+
+    <label>Reason for escalation <span class="req">*</span></label>
+    <div class="checks">
+      <label><input type="radio" name="reason" value="No response received" required> No response received</label>
+      <label><input type="radio" name="reason" value="Response was inadequate"> Response was inadequate</label>
+      <label><input type="radio" name="reason" value="Offender is a repeat violator"> Offender is a repeat violator</label>
+      <label><input type="radio" name="reason" value="Affection shortfall has worsened"> Shortfall has worsened</label>
+      <label><input type="radio" name="reason" value="Retaliation by offending party"> Retaliation by offending party</label>
+      <label><input type="radio" name="reason" value="Imminent emotional emergency"> Imminent emotional emergency</label>
+    </div>
+
+    <label>Urgency level <span class="req">*</span></label>
+    <div class="severity">
+      <label><input type="radio" name="urgency" value="Standard" required><span>Standard</span></label>
+      <label><input type="radio" name="urgency" value="Expedited"><span>Expedited</span></label>
+      <label><input type="radio" name="urgency" value="Priority"><span>Priority</span></label>
+      <label><input type="radio" name="urgency" value="Code Cuddle"><span>Code Cuddle</span></label>
+    </div>
+
+    <label>Days since original complaint was filed</label>
+    <input type="text" name="days" inputmode="numeric" placeholder="e.g., 7" />
+
+    <label>Additional context <span class="req">*</span></label>
+    <textarea name="context" required maxlength="2000" placeholder="Explain what has changed since the original complaint, any actions the offending party has or hasn't taken, and the impact on your wellbeing."></textarea>
+
+    <label>Requested escalation remedy</label>
+    <select name="remedy">
+      <option value="">— Select one —</option>
+      <option>Reassignment to Senior Affection Officer</option>
+      <option>Federal Mediator dispatched on-site</option>
+      <option>Cuddle Compliance Order (CCO) issued</option>
+      <option>Mandatory in-person hug, court-supervised</option>
+      <option>Affection Sensitivity Training (40 hours)</option>
+      <option>Referral to Bureau of Hugs for prosecution</option>
+      <option>Emergency Field Officer dispatch</option>
+    </select>
+
+    <label class="legal-attest">
+      <input type="checkbox" name="attest" required />
+      <span>I certify that good-faith efforts to resolve this matter have been exhausted and that the
+      information provided is true and complete. I understand that frivolous escalation may result in
+      review under 18 U.S.C. § 1001(snug-snug).</span>
+    </label>
+
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" data-close>Cancel</button>
+      <button type="submit" class="btn btn-submit">Submit Escalation</button>
+    </div>
+  </form>
+</template>
+
+<template id="tpl-escalate-receipt">
+  <div class="modal-header">
+    <h2 id="modal-title">Escalation Request Filed</h2>
+    <button class="close" aria-label="Close" data-close>&times;</button>
+  </div>
+  <div class="receipt">
+    <div class="stamp" style="border-color:#7a1719;color:#7a1719">ESCALATED &middot; PRIORITY</div>
+    <h2>Your case has been escalated.</h2>
+    <p>This matter has been routed to the <strong>Office of the Inspector Hugger</strong> for senior review. A
+    federal Affection Mediator will contact you within 4 business hours.</p>
+    <div class="ticket-no" id="esc-no">DPA-E-XXXXXXXX</div>
+    <div class="meta-grid" id="esc-meta"></div>
+    <p class="next-steps"><strong>Escalation timeline:</strong></p>
+    <ol class="next-steps">
+      <li>Within <strong>4 hours</strong>: Senior Affection Officer assigned and original case file pulled.</li>
+      <li>Within <strong>24 hours</strong>: Notice of Federal Affection Inquiry served to the offending party.</li>
+      <li>Within <strong>72 hours</strong>: Mandatory mediation session scheduled.</li>
+      <li>If unresolved, the case is forwarded to the Bureau of Hugs for issuance of a Cuddle Compliance Order under § 7(b).</li>
+    </ol>
+    <div class="actions">
+      <button type="button" class="btn btn-secondary" onclick="window.print()">Print Receipt</button>
+      <button type="button" class="btn btn-primary" data-close>Close</button>
+    </div>
+  </div>
+</template>
+
+<script>
+(function(){
+  const $ = sel => document.querySelector(sel);
+  const $$ = sel => document.querySelectorAll(sel);
+
+  // Banner toggle
+  const bannerBtn = $('#banner-toggle');
+  const bannerDetail = $('#banner-detail');
+  bannerBtn.addEventListener('click', () => {
+    const open = bannerDetail.classList.toggle('open');
+    bannerBtn.setAttribute('aria-expanded', open);
+  });
+
+  // Modal helpers
+  const modal = $('#modal');
+  const modalContent = $('#modal-content');
+
+  function showForm(){
+    const tpl = $('#tpl-form').content.cloneNode(true);
+    modalContent.innerHTML = '';
+    modalContent.appendChild(tpl);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    wireFormEvents();
+    setTimeout(() => modalContent.querySelector('input[name=name]').focus(), 50);
+  }
+  let lastTicketNo = null;
+
+  function showEscalate(prefillTicket){
+    const tpl = $('#tpl-escalate').content.cloneNode(true);
+    modalContent.innerHTML = '';
+    modalContent.appendChild(tpl);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    if (prefillTicket){
+      modalContent.querySelector('input[name=ticket]').value = prefillTicket;
+    }
+    wireEscalateEvents();
+    setTimeout(() => {
+      const t = modalContent.querySelector('input[name=ticket]');
+      (prefillTicket ? modalContent.querySelector('input[name=email]') : t).focus();
+    }, 50);
+  }
+
+  function showEscalateReceipt(data, escNo){
+    const tpl = $('#tpl-escalate-receipt').content.cloneNode(true);
+    modalContent.innerHTML = '';
+    modalContent.appendChild(tpl);
+    $('#esc-no').textContent = escNo;
+    const filed = new Date().toLocaleString('en-US',{dateStyle:'long',timeStyle:'short'});
+    const officer = randomSeniorOfficer();
+    const meta = $('#esc-meta');
+    const fields = [
+      ['Escalation ID', escNo],
+      ['Original Ticket', data.ticket || '—'],
+      ['Filed', filed],
+      ['Reason', data.reason || '—'],
+      ['Urgency', data.urgency || '—'],
+      ['Days Pending', data.days || 'Not specified'],
+      ['Routed To', 'Office of the Inspector Hugger'],
+      ['Senior Officer', officer],
+      ['Status', 'PRIORITY REVIEW'],
+      ['Response SLA', '4 business hours']
+    ];
+    fields.forEach(([k,v]) => {
+      const dt = document.createElement('div'); dt.innerHTML = '<b>'+k+':</b>';
+      const dd = document.createElement('div'); dd.textContent = v;
+      meta.appendChild(dt); meta.appendChild(dd);
+    });
+    wireCloseEvents();
+  }
+
+  function wireEscalateEvents(){
+    wireCloseEvents();
+    const form = $('#escalate-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const data = Object.fromEntries(new FormData(form).entries());
+      const escNo = generateEscalation();
+      showEscalateReceipt(data, escNo);
+    });
+  }
+
+  function generateEscalation(){
+    const yr = new Date().getFullYear();
+    const num = Math.floor(Math.random()*900_000) + 100_000;
+    return `DPA-E-${yr}-${num}`;
+  }
+  function randomSeniorOfficer(){
+    const titles = ['Senior Officer','Inspector','Deputy Inspector','Chief Mediator'];
+    const first = ['Bartholomew','Gwendolyn','Archibald','Constance','Mortimer','Philomena','Rutherford','Eugenia'];
+    const last = ['Holloway-Hughes','Van Embrace','Tenderfoot','Snugglebee','Warmington','Pattington-Squeeze','Hartright'];
+    const r = a => a[Math.floor(Math.random()*a.length)];
+    return `${r(titles)} ${r(first)} ${r(last)}`;
+  }
+
+  function showReceipt(data, ticketNo){
+    const tpl = $('#tpl-receipt').content.cloneNode(true);
+    modalContent.innerHTML = '';
+    modalContent.appendChild(tpl);
+    $('#ticket-no').textContent = ticketNo;
+
+    const types = (data.type && data.type.length) ? data.type.join(', ') : '—';
+    const filed = new Date().toLocaleString('en-US',{dateStyle:'long',timeStyle:'short'});
+    const officer = randomOfficer();
+    const meta = $('#receipt-meta');
+    const fields = [
+      ['Ticket Number', ticketNo],
+      ['Date Filed', filed],
+      ['Complainant', data.name || '—'],
+      ['Offending Party', data.offender || '—'],
+      ['Relationship', data.relationship || '—'],
+      ['Affection Withheld', types],
+      ['Severity', data.severity || '—'],
+      ['Assigned Officer', officer],
+      ['Status', 'PENDING REVIEW'],
+      ['Estimated Resolution', '14 calendar days']
+    ];
+    fields.forEach(([k,v]) => {
+      const dt = document.createElement('div'); dt.innerHTML = '<b>'+k+':</b>';
+      const dd = document.createElement('div'); dd.textContent = v;
+      meta.appendChild(dt); meta.appendChild(dd);
+    });
+    lastTicketNo = ticketNo;
+    wireCloseEvents();
+    const escBtn = $('#receipt-escalate');
+    if (escBtn) escBtn.addEventListener('click', () => showEscalate(ticketNo));
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modalContent.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  function wireCloseEvents(){
+    modalContent.querySelectorAll('[data-close]').forEach(el =>
+      el.addEventListener('click', closeModal)
+    );
+  }
+  function wireFormEvents(){
+    wireCloseEvents();
+    const form = $('#complaint-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const types = Array.from(form.querySelectorAll('input[name=type]:checked')).map(i => i.value);
+      if (types.length === 0){
+        alert('Please select at least one type of affection withheld.');
+        return;
+      }
+      const data = Object.fromEntries(new FormData(form).entries());
+      data.type = types;
+      const ticketNo = generateTicket();
+      showReceipt(data, ticketNo);
+      bumpStat();
+    });
+  }
+
+  function generateTicket(){
+    const yr = new Date().getFullYear();
+    const num = Math.floor(Math.random()*9_000_000) + 1_000_000;
+    const suf = String.fromCharCode(65 + Math.floor(Math.random()*26)) +
+                String.fromCharCode(65 + Math.floor(Math.random()*26));
+    return `DPA-${yr}-${num}-${suf}`;
+  }
+  function randomOfficer(){
+    const first = ['Margaret','Eleanor','Walter','Beatrice','Theodore','Patricia','Reginald','Henrietta','Cornelius','Vivian'];
+    const last  = ['Cuddleworth','Hughes','Embry','Warmley','Snuggs','Hartwell','Holdaway','Pattison','Tenderbaum','Felter'];
+    const r = a => a[Math.floor(Math.random()*a.length)];
+    return `Officer ${r(first)} ${r(last)}`;
+  }
+
+  // Live stat bumper for kicks
+  function bumpStat(){
+    const el = $('#stat-tickets');
+    const n = parseInt(el.textContent.replace(/[^0-9]/g,''),10) + 1;
+    el.textContent = n.toLocaleString('en-US');
+  }
+
+  // Wire openers
+  $('#open-complaint').addEventListener('click', showForm);
+  $('#open-complaint-2').addEventListener('click', showForm);
+  $('#nav-file').addEventListener('click', (e) => { e.preventDefault(); showForm(); });
+  $('#nav-escalate').addEventListener('click', (e) => { e.preventDefault(); showEscalate(lastTicketNo); });
+
+  // Close on backdrop click & Esc
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
+
+  // Slow drift on stats for "live" feel
+  setInterval(() => {
+    if (Math.random() < 0.4) bumpStat();
+  }, 4000);
+})();
+</script>
+</body>
+</html>
