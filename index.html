@@ -857,6 +857,24 @@
   const $ = sel => document.querySelector(sel);
   const $$ = sel => document.querySelectorAll(sel);
 
+  // Intake endpoint (Google Apps Script web app). Empty = no remote logging,
+  // local UI still works. Filled in once the Apps Script is deployed.
+  const INTAKE_URL = '';
+
+  function logSubmission(payload){
+    if (!INTAKE_URL) return;
+    try {
+      // text/plain avoids a CORS preflight; Apps Script reads e.postData.contents
+      fetch(INTAKE_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload),
+        keepalive: true
+      }).catch(() => {});
+    } catch(_){}
+  }
+
   // Banner toggle
   const bannerBtn = $('#banner-toggle');
   const bannerDetail = $('#banner-detail');
@@ -937,6 +955,21 @@
       meta.appendChild(dt); meta.appendChild(dd);
     });
     wireCloseEvents();
+
+    logSubmission({
+      kind: 'escalation',
+      ticketNo: escNo,
+      ticket: data.ticket,
+      email: data.email,
+      reason: data.reason,
+      urgency: data.urgency,
+      days: data.days,
+      context: data.context,
+      remedy: data.remedy,
+      officer,
+      userAgent: navigator.userAgent,
+      referrer: document.referrer
+    });
   }
 
   function wireEscalateEvents(){
@@ -995,6 +1028,24 @@
     wireCloseEvents();
     const escBtn = $('#receipt-escalate');
     if (escBtn) escBtn.addEventListener('click', () => showEscalate(ticketNo));
+
+    logSubmission({
+      kind: 'complaint',
+      ticketNo,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      date: data.date,
+      offender: data.offender,
+      relationship: data.relationship,
+      type: data.type,
+      severity: data.severity,
+      description: data.description,
+      remedy: data.remedy,
+      officer,
+      userAgent: navigator.userAgent,
+      referrer: document.referrer
+    });
   }
   function closeModal(){
     modal.classList.remove('open');
